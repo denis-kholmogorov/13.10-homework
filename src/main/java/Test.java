@@ -27,12 +27,14 @@ public class Test {
         int cost = 100;
         Scanner scanner = new Scanner(System.in);
         boolean accept = false;
-
+        System.out.println("Программа запущена");
         while(true)
         {
+            System.out.print("Введите команду: ");
             String commandString = scanner.nextLine();
             String[] commands = commandString.split(" ");
 
+            //№1 Добавить магазин
             if(commands[0].equals("add_shop") && commands.length == 2)
             {
                 accept = true;
@@ -42,6 +44,7 @@ public class Test {
                 System.out.println("Магазин " + commands[1] + "добавлени");
             }
 
+            //№2 Добавить продукт и его цену
             if(commands[0].equals("add_product") && commands.length == 3)
             {
                 accept=true;
@@ -51,6 +54,7 @@ public class Test {
                 System.out.println("Продукт " + commands[1] + " добавлен");
             }
 
+            //№3 Добавить продукт в магазин
             if(commands[0].equals("put_product") && commands.length == 3)
             {
                 accept=true;
@@ -60,14 +64,7 @@ public class Test {
 
             }
 
-            if(commands[0].equals("put_product") && commands.length == 3)
-            {
-                accept=true;
-                Bson filter = eq("shopName", commands[2]);
-                collectionShop.updateOne(filter,  addToSet("products",commands[1]));
-                System.out.println("Продукт " + commands[1] + " добавлен в магазин " + commands[2]);
-            }
-
+            //№4 Статистика
             if(commands[0].equals("statistics") && commands.length == 1)
             {
                 accept=true;
@@ -111,6 +108,7 @@ public class Test {
 
             if(commands[0].equals("quit"))
             {
+                System.out.println("До встречи");
                 break;
             }
         }
@@ -120,4 +118,5 @@ public class Test {
 * add_shop shop
 * add_product product 22
 * put_product product shop
+* statistics
 * */
